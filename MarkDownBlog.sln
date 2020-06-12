@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30204.135
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kuchulem.MarkDownBlog.Api", "Kuchulem.MarkDownBlog.Api\Kuchulem.MarkDownBlog.Api.csproj", "{6ADB3208-4A7F-4567-B4A0-4FEBB2652E95}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kuchulem.MarkDownBlog.Client", "Kuchulem.MarkDownBlog.Client\Kuchulem.MarkDownBlog.Client.csproj", "{8992354D-71F4-42F2-9415-7170C2CD016D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6ADB3208-4A7F-4567-B4A0-4FEBB2652E95}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6ADB3208-4A7F-4567-B4A0-4FEBB2652E95}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6ADB3208-4A7F-4567-B4A0-4FEBB2652E95}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6ADB3208-4A7F-4567-B4A0-4FEBB2652E95}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8992354D-71F4-42F2-9415-7170C2CD016D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8992354D-71F4-42F2-9415-7170C2CD016D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8992354D-71F4-42F2-9415-7170C2CD016D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8992354D-71F4-42F2-9415-7170C2CD016D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {398F5933-955C-4112-8583-FA8E320F202A}
+	EndGlobalSection
+EndGlobal
