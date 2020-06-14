@@ -1,0 +1,136 @@
+﻿/*
+    COLORS
+    orange: #da8139
+    slate: #232832
+    light-steel: lightsteelblue
+*/
+
+body {
+    padding: 0;
+    margin: 0;
+    font-family: sans-serif;
+    font-size: 1.4vw;
+}
+
+.logo {
+    width: 2em;
+    height: 2em;
+    display: block;
+    margin: auto;
+}
+
+/*
+    HEADER
+*/
+
+header {
+    display: block;
+    width: 100%;
+    margin: 0;
+    padding: .5em 0;
+    box-shadow: rgba(0,0,0,.67) 0 1px 5px;
+    display: block;
+    table-layout: fixed;
+    background-color: #232832;
+    color: lightsteelblue;
+    font-size: 1em;
+}
+
+    header a, header a:link, header a:visited, header a:hover {
+        color: inherit;
+        text-decoration: none;
+    }
+
+    header [role=heading] {
+        margin: auto;
+        text-align: center;
+        font-family: "Ubuntu Condensed";
+    }
+
+        header [role=heading] a {
+            font-size: 3em;
+        }
+
+    header [role=definition] {
+        text-align: center;
+        margin: 0;
+        padding: 0;
+        font-family: "Ubuntu Condensed";
+    }
+
+nav {
+    height: 3em;
+    padding: 0;
+    margin: 2em auto 0 auto;
+    display: block;
+    text-align: center;
+}
+
+    nav a[role=button] {
+        display: none;
+    }
+
+    nav ul {
+        display: inline-block;
+        height: 3em;
+        margin: 1em auto;
+        padding: 0;
+        font-size: 1em;
+    }
+
+    nav li {
+        display: table-cell;
+        vertical-align: middle;
+        text-align: center;
+        border-right: 1px solid #da8139;
+    }
+
+        nav li:last-child {
+            border: 0;
+        }
+
+
+        nav li a {
+            display: block;
+            height: 100%;
+            padding: 0 1em;
+        }
+
+header.slim {
+    display: table;
+    table-layout: fixed;
+    width: 100%;
+}
+
+    header.slim [role=heading]
+    {
+        display: table-cell;
+    }
+
+    header.slim [role=heading] > * {
+        margin-left: 0;
+        margin-right: 0;
+        vertical-align: middle;
+        width: 100%;
+        display:inline-block;
+    }
+
+    header.slim [role=heading] p {
+        text-align:left;
+    }
+
+    header.slim nav {
+        display:table-cell;
+        vertical-align:middle;
+        margin: auto 0 0 0;
+        text-align:right;
+        padding:1em;
+    }
+    /*
+    MAIN
+*/
+    main {
+        max-width: 70vw;
+        margin: auto;
+        display: block;
+    }

@@ -1,0 +1,19 @@
+﻿@model Kuchulem.MarkdownBlog.Core.Models.Articles.ArticleListViewModel
+
+<div>
+    <h4>ArticleListViewModel</h4>
+    <div>
+
+@foreach (var item in Model.Elements) {
+        <div class="article card light-borders light-bottom-shadow">
+            <img src="@(item.Thumbnail)" alt="@(item.Title)"/>
+            <h2>@item.Title</h2>
+            @Html.Raw(item.Summary)
+        </div>
+}
+    </div>
+</div>
+<div class="pagination">
+    <a class="light-borders" href="@(Model.PreviousUrl)">&lt;</a>
+    <a class="light-borders" href="@(Model.NextUrl)">&gt;</a>
+</div>

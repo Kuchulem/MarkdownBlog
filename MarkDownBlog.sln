@@ -3,9 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30204.135
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kuchulem.MarkDownBlog.Api", "Kuchulem.MarkDownBlog.Api\Kuchulem.MarkDownBlog.Api.csproj", "{6ADB3208-4A7F-4567-B4A0-4FEBB2652E95}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kuchulem.MarkdownBlog.Core", "Kuchulem.MarkdownBlog.Core\Kuchulem.MarkdownBlog.Core.csproj", "{9DCFF852-3AD9-4E05-8567-749C84EF6D03}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kuchulem.MarkDownBlog.Client", "Kuchulem.MarkDownBlog.Client\Kuchulem.MarkDownBlog.Client.csproj", "{8992354D-71F4-42F2-9415-7170C2CD016D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kuchulem.MarkdownBlog.Services", "Kuchulem.MarkdownBlog.Services\Kuchulem.MarkdownBlog.Services.csproj", "{A5465DDB-025C-4026-8D2C-670AF2B74D8A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kuchulem.MarkdownBlog.Models", "Kuchulem.MarkdownBlog.Models\Kuchulem.MarkdownBlog.Models.csproj", "{20478C28-326A-42ED-8ADF-793C2E3B7493}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kuchulem.MarkdownBlog.Libs", "Kuchulem.MarkdownBlog.Libs\Kuchulem.MarkdownBlog.Libs.csproj", "{91603015-69C9-441E-9DD5-FD6C13545864}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,14 +17,22 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{6ADB3208-4A7F-4567-B4A0-4FEBB2652E95}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6ADB3208-4A7F-4567-B4A0-4FEBB2652E95}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6ADB3208-4A7F-4567-B4A0-4FEBB2652E95}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6ADB3208-4A7F-4567-B4A0-4FEBB2652E95}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8992354D-71F4-42F2-9415-7170C2CD016D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8992354D-71F4-42F2-9415-7170C2CD016D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8992354D-71F4-42F2-9415-7170C2CD016D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8992354D-71F4-42F2-9415-7170C2CD016D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9DCFF852-3AD9-4E05-8567-749C84EF6D03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9DCFF852-3AD9-4E05-8567-749C84EF6D03}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9DCFF852-3AD9-4E05-8567-749C84EF6D03}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9DCFF852-3AD9-4E05-8567-749C84EF6D03}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A5465DDB-025C-4026-8D2C-670AF2B74D8A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5465DDB-025C-4026-8D2C-670AF2B74D8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5465DDB-025C-4026-8D2C-670AF2B74D8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5465DDB-025C-4026-8D2C-670AF2B74D8A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{20478C28-326A-42ED-8ADF-793C2E3B7493}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20478C28-326A-42ED-8ADF-793C2E3B7493}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20478C28-326A-42ED-8ADF-793C2E3B7493}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{20478C28-326A-42ED-8ADF-793C2E3B7493}.Release|Any CPU.Build.0 = Release|Any CPU
+		{91603015-69C9-441E-9DD5-FD6C13545864}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91603015-69C9-441E-9DD5-FD6C13545864}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91603015-69C9-441E-9DD5-FD6C13545864}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91603015-69C9-441E-9DD5-FD6C13545864}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

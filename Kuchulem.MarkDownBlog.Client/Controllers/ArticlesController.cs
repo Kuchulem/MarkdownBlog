@@ -1,9 +1,12 @@
-﻿using Kuchulem.MarkDownBlog.Client.Models;
+﻿using Kuchulem.MarkDownBlog.Libs.Extensions;
+using Kuchulem.MarkDownBlog.Client.Models;
 using Kuchulem.MarkDownBlog.Client.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Routing;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace Kuchulem.MarkDownBlog.Client.Controllers
@@ -21,6 +24,10 @@ namespace Kuchulem.MarkDownBlog.Client.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<Article>> Get(int page, int count)
         {
+#if DEBUG
+            this.WriteDebugLine(message: "------------------------------------------");
+            this.WriteDebugLine(message: $"page {page} - count {count}");
+#endif
             page = page < 1 ? 1 : page;
             count = count <= 0 ? 20 : count;
 
@@ -32,9 +39,18 @@ namespace Kuchulem.MarkDownBlog.Client.Controllers
         /// </summary>
         /// <param name="slug"></param>
         /// <returns></returns>
+        [HttpGet("{slug}")]
         public ActionResult<Article> Get(string slug)
         {
+            if (string.IsNullOrEmpty(slug))
+                return BadRequest();
 
+            var article = articleService.GetArticle(slug);
+
+            if (article is null)
+                return NotFound(slug);
+
+            return Ok(article);
         }
     }
 }

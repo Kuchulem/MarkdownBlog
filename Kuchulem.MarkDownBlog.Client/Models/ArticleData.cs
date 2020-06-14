@@ -7,11 +7,11 @@ namespace Kuchulem.MarkDownBlog.Client.Models
 {
     public class ArticleData
     {
+        public string Slug { get; set; }
 
         public IEnumerable<string> Tags { get; set; }
 
         public ArticlePicture Picture { get; set; }
-
 
         public DateTime PublicationDate { get; set; }
     }

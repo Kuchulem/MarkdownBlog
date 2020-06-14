@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Kuchulem</title>
+    <!-- Fonts from google fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Ubuntu+Condensed&display=swap" rel="stylesheet">
+    <!-- icons fonts -->
+    <link rel="stylesheet" href="~/css/icons.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <header role="banner" class="slim">
+        <div role="heading">
+            
+            <a class="" asp-area="" asp-controller="Home" asp-action="Index">
+                <partial name="Logo.cshtml" />
+                Kuchulem
+            </a>
+            <p role="definition">A dev's diary</p>
+        </div>
+        <nav role="navigation">
+            <a role="button" class="icon-menu"></a>
+            <ul>
+                <li>
+                    <a asp-area="" asp-controller="Articles" asp-action="Index">Articles</a>
+                </li>
+                <li>
+                    <a asp-area="" asp-controller="Articles" asp-action="Index">Articles</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <main role="main">
+        @RenderBody()
+    </main>
+    <footer role="contentinfo">
+        &copy; 2020 - Kuchulem - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    </footer>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

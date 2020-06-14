@@ -5,6 +5,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+#if DEBUG
+using Kuchulem.MarkDownBlog.Libs.Extensions;
+#endif
 
 namespace Kuchulem.MarkDownBlog.Client.Services
 {
@@ -37,6 +40,9 @@ namespace Kuchulem.MarkDownBlog.Client.Services
         /// <param name="configuration">The configuration of the application</param>
         public FileModelServiceBase(ApplicationConfiguration configuration)
         {
+#if DEBUG
+            this.WriteDebugLine();
+#endif
             this.configuration = configuration;
 
             filesPath = MakeFilesPath();
@@ -44,6 +50,9 @@ namespace Kuchulem.MarkDownBlog.Client.Services
 
         private DirectoryInfo MakeFilesPath()
         {
+#if DEBUG
+            this.WriteDebugLine();
+#endif
             var dirPath = Path.Combine(configuration.DataFilesPath, ModelSubDirectory);
 
             if (!Directory.Exists(dirPath))
@@ -76,29 +85,47 @@ namespace Kuchulem.MarkDownBlog.Client.Services
         /// <returns></returns>
         protected string FileFullName(string name)
         {
+#if DEBUG
+            this.WriteDebugLine();
+#endif
             return $"{name}.{FileExtension}";
         }
 
         /// <summary>
         /// Gets a file from its slug.
         /// </summary>
-        /// <param name="slug">The slug of the file to find</param>
+        /// <param name="fileName">The slug of the file to find</param>
         /// <returns></returns>
-        protected FileInfo GetFile(string slug)
+        protected FileInfo GetFile(string fileName)
         {
-            return new FileInfo(Path.Combine(filesPath.FullName, FileFullName(slug)));
+#if DEBUG
+            this.WriteDebugLine();
+#endif
+            return new FileInfo(Path.Combine(filesPath.FullName, FileFullName(fileName)));
         }
 
         protected T ConvertFileToFileModel(FileInfo file)
         {
+#if DEBUG
+            this.WriteDebugLine();
+#endif
             using var stream = file.OpenRead();
             using var reader = new StreamReader(stream);
-            return new T
+            var content = reader.ReadToEnd();
+#if DEBUG
+            this.WriteDebugLine(message: "File read");
+#endif
+            var model = new T
             {
                 Extension = FileExtension,
                 Name = file.Name,
-                RawContent = reader.ReadToEnd()
+                RawContent = content
             };
+#if DEBUG
+            this.WriteDebugLine(message: "Model created");
+#endif
+
+            return model;
         }
 
         /// <summary>
@@ -109,8 +136,15 @@ namespace Kuchulem.MarkDownBlog.Client.Services
         /// <returns></returns>
         public T Get(string slug)
         {
+#if DEBUG
+            this.WriteDebugLine();
+#endif
             var file = filesPath.GetFiles().Where(f => f.Name == slug).FirstOrDefault();
 
+#if DEBUG
+            if (!file.Exists)
+                this.WriteDebugLine(message: $"File {file.FullName} not found");
+#endif
             if (!file.Exists)
                 return default;
 
@@ -119,10 +153,17 @@ namespace Kuchulem.MarkDownBlog.Client.Services
 
         public IEnumerable<T> GetAll()
         {
-            var files = filesPath.GetFiles();
-            return files
+#if DEBUG
+            this.WriteDebugLine();
+#endif
+            var files = filesPath.GetFiles()
                 .Where(f => f.Extension == $".{FileExtension}")
                 .Select(f => ConvertFileToFileModel(f));
+
+#if DEBUG
+            this.WriteDebugLine(message: $"return {files.Count()} files");
+#endif
+            return files;
         }
 
         /// <summary>
@@ -133,6 +174,9 @@ namespace Kuchulem.MarkDownBlog.Client.Services
         /// <returns></returns>
         public T Save(T fileModel)
         {
+#if DEBUG
+            this.WriteDebugLine();
+#endif
             var file = GetFile(fileModel.Name);
 
             using var stream = file.OpenWrite();
@@ -149,6 +193,9 @@ namespace Kuchulem.MarkDownBlog.Client.Services
         /// <returns></returns>
         public bool Delete(T fileModel)
         {
+#if DEBUG
+            this.WriteDebugLine();
+#endif
             return Delete(fileModel.Name);
         }
 
@@ -159,6 +206,9 @@ namespace Kuchulem.MarkDownBlog.Client.Services
         /// <returns></returns>
         public bool Delete(string slug)
         {
+#if DEBUG
+            this.WriteDebugLine();
+#endif
             var file = GetFile(slug);
 
             if (file.Exists)

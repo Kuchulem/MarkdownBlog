@@ -1,4 +1,6 @@
+using Kuchulem.MarkDownBlog.Client.CacheProvider;
 using Kuchulem.MarkDownBlog.Client.Configuration;
+using Kuchulem.MarkDownBlog.Client.Models;
 using Kuchulem.MarkDownBlog.Client.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -15,14 +17,22 @@ namespace Kuchulem.MarkDownBlog.Client
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            AppConfiguration = Configuration.GetSection("Application").Get<ApplicationConfiguration>();
+
+            if (!AppConfiguration.IsComplete)
+                throw new System.Exception("Configuration is incomplete.");
         }
 
         public IConfiguration Configuration { get; }
+
+        public ApplicationConfiguration AppConfiguration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSingleton(Configuration.GetSection("Application").Get<ApplicationConfiguration>());
+
+            services.AddSingleton<IFileModelCacheProvider<Article>>(new InMemoryFileCacheCacheProvider<Article>());
 
             services.AddTransient<ArticleService>();
 
