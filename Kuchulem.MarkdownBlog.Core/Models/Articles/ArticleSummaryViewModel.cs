@@ -22,8 +22,20 @@ namespace Kuchulem.MarkdownBlog.Core.Models.Articles
         /// </summary>
         public IEnumerable<string> Tags { get; set; }
 
-        public string Thumbnail { get; set; }
+        /// <summary>
+        /// The main pic of the article
+        /// </summary>
+        public string MainPicture { get; set; }
 
+        /// <summary>
+        /// Summary of the article
+        /// </summary>
         public string Summary { get; set; }
+
+
+        /// <summary>
+        /// Last publication date
+        /// </summary>
+        public DateTime PublicationDate { get; set; }
     }
 }

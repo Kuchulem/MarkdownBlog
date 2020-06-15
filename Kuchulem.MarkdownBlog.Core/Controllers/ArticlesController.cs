@@ -42,10 +42,11 @@ namespace Kuchulem.MarkDownBlog.Core.Controllers
 
             var list = articleService.GetLastArticles(actualPage, actualCount).Select(a => new ArticleSummaryViewModel
             {
+                PublicationDate = a.PublicationDate,
                 Slug = a.Slug,
                 Summary = a.Summary,
                 Tags = a.Tags,
-                Thumbnail = a.Thumbnail,
+                MainPicture = a.MainPicture,
                 Title = a.Title
             }).ToList();
 
@@ -67,7 +68,7 @@ namespace Kuchulem.MarkDownBlog.Core.Controllers
         /// <param name="slug"></param>
         /// <returns></returns>
         [HttpGet("{slug}")]
-        public ActionResult<Article> Get(string slug)
+        public ActionResult<Article> Article(string slug)
         {
             if (string.IsNullOrEmpty(slug))
                 return BadRequest();
@@ -77,7 +78,16 @@ namespace Kuchulem.MarkDownBlog.Core.Controllers
             if (article is null)
                 return NotFound(slug);
 
-            return Ok(article);
+            return View(new ArticleViewModel
+            {
+                HtmlContent = article.HtmlContent,
+                MainPicture = article.MainPicture,
+                PublicationDate = article.PublicationDate,
+                Slug = article.Slug,
+                Summary = article.Summary,
+                Tags = article.Tags,
+                Title = article.Title
+            });
         }
     }
 }

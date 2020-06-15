@@ -40,6 +40,6 @@ namespace Kuchulem.MarkdownBlog.Core.Models.Articles
         /// <summary>
         /// Html content of the article
         /// </summary>
-        public string HtmlContent { get; private set; }
+        public string HtmlContent { get; set; }
     }
 }

@@ -69,9 +69,9 @@ namespace Kuchulem.MarkDownBlog.Services
             return count;
         }
 
-        public IEnumerable<Article> GetArticle(string slug)
+        public Article GetArticle(string slug)
         {
-            return GetReadableArticles().Where(a => a.Slug == slug).ToList();
+            return GetReadableArticles().Where(a => a.Slug == slug).FirstOrDefault();
         }
 
         private IEnumerable<Article> GetReadableArticles()

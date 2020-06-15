@@ -1,19 +1,32 @@
 ﻿@model Kuchulem.MarkdownBlog.Core.Models.Articles.ArticleListViewModel
 
-<div>
-    <h4>ArticleListViewModel</h4>
-    <div>
-
-@foreach (var item in Model.Elements) {
-        <div class="article card light-borders light-bottom-shadow">
-            <img src="@(item.Thumbnail)" alt="@(item.Title)"/>
-            <h2>@item.Title</h2>
-            @Html.Raw(item.Summary)
-        </div>
+<article>
+    <h1>Derniers articles</h1>
+    <div class="cards-container">
+@foreach (var item in Model.Elements)
+{
+        <section class="article card">
+            <div class="card-picture bottom-shadow-3d" style="background-image:url(@(item.MainPicture))">
+                <h2>@item.Title</h2>
+            </div>
+            <div class="card-content">
+                <div class="publication">
+                    <span>Publié le @(item.PublicationDate.ToString("dd/MM/yyyy"))</span> par <a class="author">Kuchulem</a>
+                </div>
+                @Html.Raw(item.Summary)
+            </div>
+            <a asp-area="" asp-controller="Articles" asp-action="Article" asp-route-slug="@(item.Slug)">Lire</a>
+        </section>
 }
     </div>
-</div>
+</article>
 <div class="pagination">
-    <a class="light-borders" href="@(Model.PreviousUrl)">&lt;</a>
-    <a class="light-borders" href="@(Model.NextUrl)">&gt;</a>
+    @if (Model.PreviousUrl != null)
+    {
+        <a class="light-borders" href="@(Model.PreviousUrl)">&lt;</a>
+    }
+    @if (Model.NextUrl != null)
+    {
+        <a class="light-borders" href="@(Model.NextUrl)">&gt;</a>
+    }
 </div>

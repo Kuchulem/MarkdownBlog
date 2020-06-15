@@ -1,0 +1,21 @@
+﻿@model Kuchulem.MarkdownBlog.Core.Models.Articles.ArticleViewModel
+
+<Article role="article">
+    <div class="article-pic light-borders bottom-shadow-3d" style="background-image:url('@(Model.MainPicture)')">
+        <h1>@Html.DisplayFor(m => m.Title)</h1>
+    </div>
+    <section class="publication" role="contentinfo">
+        <span>Publié le @(Model.PublicationDate.ToString("dd/MM/yyyy"))</span> par <a class="author">Kuchulem</a>
+        dans
+@foreach(var tag in Model.Tags)
+{
+        <a class="tag">@tag</a>
+}
+    </section>
+    <section class="summary">
+        @Html.Raw(Model.Summary)
+    </section>
+    <section class="content">
+        @Html.Raw(Model.HtmlContent)
+    </section>
+</Article>

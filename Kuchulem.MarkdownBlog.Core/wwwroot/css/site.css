@@ -1,15 +1,22 @@
 ﻿/*
     COLORS
-    orange: #da8139
-    slate: #232832
-    light-steel: lightsteelblue
+    orange: #da8139 rgba(218, 129, 57, 1)
+    slate: #232832 rgba(35, 40, 50, 1)
+    light-steel: lightsteelblue #b0c4de rgba(176, 196, 222, 1)
 */
+
+/*
+    GENERAL
+*/
+html {
+    font-size: 100%;
+    font-weight: 400;
+    font-family: "Open sans";
+}
 
 body {
     padding: 0;
     margin: 0;
-    font-family: sans-serif;
-    font-size: 1.4vw;
 }
 
 .logo {
@@ -19,16 +26,100 @@ body {
     margin: auto;
 }
 
+.light-borders {
+    box-shadow: rgba(0,0,0,.67) 0 0 2px;
+}
+
+.light-bottom-shadow {
+    box-shadow: rgba(0,0,0,.67) 0 3px 10px;
+}
+
+.bottom-shadow-3d::after {
+    content: "";
+    position: relative;
+    width: 95%;
+    height: 95%;
+    top: 5%;
+    box-shadow: rgba(0,0,0,.67) 0 5px 20px;
+    background-color: rgba(0,0,0,.67);
+    display: block;
+    margin: auto;
+    z-index: -1;
+}
+
+a, a:link, a:visited, a:hover {
+    color: #da8139;
+    text-decoration: none;
+    font-family: "Ubuntu Condensed";
+}
+
+h1, h2, h3, h4 {
+    color: #232832;
+    font-family: "Ubuntu Condensed";
+    font-weight: 800;
+}
+
+h1 {
+    font-size: 2.3em;
+}
+
+h2 {
+    font-size: 1.9em;
+}
+
+h3 {
+    font-size: 1.5em;
+    font-weight: 600;
+}
+
+h4 {
+    font-size: 1.2em;
+    font-weight: 600;
+}
+
+.publication {
+    font-size: .9em;
+    font-style: italic;
+    font-weight: 200;
+}
+
+.author {
+    font-weight: 600;
+}
+
+.tag {
+    display: inline-block;
+    padding: 0 .5em;
+    line-height: 1.6em;
+    color: lightsteelblue;
+    background-color: #232832;
+    font-style: normal;
+    font-weight: 400;
+    border-radius: 2px;
+    box-sizing: border-box;
+    box-shadow: rgba(0,0,0,.33) 0 3px 5px;
+}
+
+code {
+    box-shadow: rgba(0,0,0,.67) 0 0 2px, rgba(0,0,0,.67) 0 3px 10px;
+    background-color: rgba(176, 196, 222, .67);
+    color: #232832;
+    padding: .2em;
+}
+
+pre code {
+    display: block;
+    padding: .5em;
+}
+
 /*
     HEADER
 */
-
 header {
     display: block;
     width: 100%;
     margin: 0;
     padding: .5em 0;
-    box-shadow: rgba(0,0,0,.67) 0 1px 5px;
     display: block;
     table-layout: fixed;
     background-color: #232832;
@@ -102,35 +193,176 @@ header.slim {
     width: 100%;
 }
 
-    header.slim [role=heading]
-    {
+    header.slim [role=heading] {
         display: table-cell;
+        text-align: left;
     }
 
-    header.slim [role=heading] > * {
-        margin-left: 0;
-        margin-right: 0;
-        vertical-align: middle;
-        width: 100%;
-        display:inline-block;
-    }
+        header.slim [role=heading] .logo, header.slim [role=heading] a {
+            margin-left: 0;
+            margin-right: 0;
+            vertical-align: middle;
+            display: inline-block;
+        }
 
-    header.slim [role=heading] p {
-        text-align:left;
-    }
+        header.slim [role=heading] p {
+            text-align: left;
+            padding-left: 1em;
+            display: inline-block;
+            vertical-align: middle;
+            margin: 0;
+            padding: 0;
+            margin-left: 1em;
+        }
 
     header.slim nav {
-        display:table-cell;
-        vertical-align:middle;
-        margin: auto 0 0 0;
-        text-align:right;
-        padding:1em;
+        display: table-cell;
+        vertical-align: middle;
+        margin: 0;
+        text-align: right;
+        padding: 0;
+        height: auto;
     }
-    /*
+
+        header.slim nav ul {
+            height: auto;
+        }
+/*
     MAIN
 */
-    main {
-        max-width: 70vw;
-        margin: auto;
-        display: block;
+main {
+    width: 90vw;
+    max-width: 1000px;
+    margin: auto;
+    display: block;
+}
+
+.carts-container {
+}
+
+.card {
+    padding: .5em;
+    box-sizing: border-box;
+    display: block;
+}
+
+.card-picture {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background-size: cover;
+    background-position: center center;
+    background-color: #232832;
+    height: 15vw;
+    position: relative;
+}
+
+    .card-picture h2 {
+        padding: .5em calc(15% + 1em / 1.9);
+        margin: 0;
+        background-color: rgba(255,255,255,.67);
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        box-sizing: border-box;
     }
+
+
+.card-content {
+    width: 70%;
+    margin: auto;
+    padding: 1em;
+    box-sizing: border-box;
+}
+
+/*
+    ARTICLE
+*/
+article[role=article] {
+    background-color: white;
+}
+
+    article[role=article] .article-pic {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        background-size: cover;
+        background-position: center center;
+        background-color: #232832;
+        height: 18vw;
+        position: relative;
+    }
+
+        article[role=article] .article-pic h1 {
+            padding: .5em 15%;
+            margin: 0;
+            background-color: rgba(255,255,255,.67);
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            box-sizing: border-box;
+        }
+
+    article[role=article] section {
+        padding: 0;
+        width: 70%;
+        margin: auto;
+        box-sizing: border-box;
+        text-align: justify;
+    }
+
+        article[role=article] section.summary {
+            font-weight: 200;
+            font-style: italic;
+            font-size: .9em;
+            background-color: white;
+            margin: 1em auto 2em auto;
+        }
+
+        article[role=article] section > * {
+            margin: 1em 0;
+        }
+
+        article[role=article] section p img {
+            display: block;
+            box-shadow: rgba(0,0,0,.67) 0 0 2px, rgba(0,0,0,.67) 0 3px 10px;
+            margin: auto;
+        }
+
+            article[role=article] section p img + em { /* legend */
+                display: block;
+                margin: auto;
+                text-align: center;
+                font-size: .9em;
+                font-family: "Ubuntu Condensed";
+                font-style: italic;
+            }
+
+        article[role=article] section ul li {
+            display: table;
+            list-style-type: none;
+        }
+
+            article[role=article] section ul li::before {
+                display: table-cell;
+                content: "-";
+                padding-right: .3em;
+                font-weight: bold;
+                font-family: "Ubuntu Condensed";
+            }
+
+        article[role=article] section blockquote {
+            font-size: .9em;
+            padding: .5em;
+            box-shadow: rgba(0,0,0,.67) 0 0 2px, rgba(0,0,0,.67) 0 3px 10px;
+            border: 0;
+            border-left: .3em solid rgba(176, 196, 222, .67);
+        }
+
+            article[role=article] section blockquote p {
+                border-spacing: .5em;
+                margin: 0;
+                padding: 0;
+            }
