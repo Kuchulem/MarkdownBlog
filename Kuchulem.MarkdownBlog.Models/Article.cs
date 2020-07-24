@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 using YamlDotNet.Core;
 using YamlDotNet.Serialization;
 #if DEBUG
-using Kuchulem.MarkDownBlog.Libs.Extensions;
+using Kuchulem.MarkdownBlog.Libs.Extensions;
 #endif
 
-namespace Kuchulem.MarkDownBlog.Models
+namespace Kuchulem.MarkdownBlog.Models
 {
     public class Article : IFileModel
     {

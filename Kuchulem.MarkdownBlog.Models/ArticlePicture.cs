@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Kuchulem.MarkDownBlog.Models
+namespace Kuchulem.MarkdownBlog.Models
 {
     public class ArticlePicture
     {

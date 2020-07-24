@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Kuchulem.MarkdownBlog.Command": {
+      "commandName": "Project",
+      "commandLineArgs": "--cache --blog https://localhost:5001 --reload"
+    }
+  }
+}

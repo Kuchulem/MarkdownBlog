@@ -1,0 +1,6 @@
+﻿@model Kuchulem.MarkdownBlog.Core.Models.Pages.PagesMenuListItemViewModel
+
+@if (Model != null)
+{
+    <a asp-area="" asp-controller="Pages" asp-action="Page" asp-route-slug="@(Model.Slug)">@Model.Title</a>
+}

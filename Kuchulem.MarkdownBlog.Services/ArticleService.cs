@@ -1,14 +1,14 @@
 ﻿using Kuchulem.MarkdownBlog.Services.Configurations;
-using Kuchulem.MarkDownBlog.Models;
-using Kuchulem.MarkDownBlog.Services.CacheProvider;
+using Kuchulem.MarkdownBlog.Models;
+using Kuchulem.MarkdownBlog.Services.CacheProvider;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 #if DEBUG
-using Kuchulem.MarkDownBlog.Libs.Extensions;
+using Kuchulem.MarkdownBlog.Libs.Extensions;
 #endif
 
-namespace Kuchulem.MarkDownBlog.Services
+namespace Kuchulem.MarkdownBlog.Services
 {
     public class ArticleService : FileModelServiceBase<Article>
     {
@@ -27,7 +27,12 @@ namespace Kuchulem.MarkDownBlog.Services
             this.cacheProvider = cacheProvider;
         }
 
-        public IEnumerable<Article> GetLastArticles(int page, int count)
+        public void ResetCache()
+        {
+            cacheProvider.ResetCache();
+        }
+
+        public IEnumerable<Article> GetLastArticles(int page, int count, bool noCache = false)
         {
 #if DEBUG
             this.WriteDebugLine();
@@ -36,12 +41,12 @@ namespace Kuchulem.MarkDownBlog.Services
 
             var articles = cacheProvider.GetQuery(query);
 
-            if(!articles.Any())
+            if(!articles.Any() || noCache)
             {
 #if DEBUG
                 this.WriteDebugLine(message: "No cache");
 #endif
-                articles = GetReadableArticles()
+                articles = GetReadableArticles(noCache)
                     .Skip((page - 1) * count)
                     .Take(count)
                     .ToList();
@@ -55,13 +60,13 @@ namespace Kuchulem.MarkDownBlog.Services
             return articles;
         }
 
-        public int GetCountReadableArticles()
+        public int GetCountReadableArticles(bool noCache = false)
         {
             var count = cacheProvider.Request<int>(QueryCountReadable);
 
-            if(count == default)
+            if(count == default || noCache)
             {
-                count = GetReadableArticles().Count();
+                count = GetReadableArticles(noCache).Count();
 
                 cacheProvider.Store(QueryCountReadable, count);
             }
@@ -69,12 +74,12 @@ namespace Kuchulem.MarkDownBlog.Services
             return count;
         }
 
-        public Article GetArticle(string slug)
+        public Article GetArticle(string slug, bool noCache = false)
         {
-            return GetReadableArticles().Where(a => a.Slug == slug).FirstOrDefault();
+            return GetReadableArticles(noCache).Where(a => a.Slug == slug).FirstOrDefault();
         }
 
-        private IEnumerable<Article> GetReadableArticles()
+        private IEnumerable<Article> GetReadableArticles(bool noCache = false)
         {
 #if DEBUG
             this.WriteDebugLine();
@@ -83,12 +88,12 @@ namespace Kuchulem.MarkDownBlog.Services
 
             var articles = cacheProvider.GetQuery(query);
 
-            if(!articles.Any())
+            if(!articles.Any() || noCache)
             {
 #if DEBUG
                 this.WriteDebugLine(message: "No cache");
 #endif
-                articles = GetAllArticles().Where(f => f.IsValid && f.PublicationDate <= DateTime.Now).ToList();
+                articles = GetAllArticles(noCache).Where(f => f.IsValid && f.PublicationDate <= DateTime.Now).ToList();
                 cacheProvider.SetQuery(query, articles);
                 cacheProvider.Store(QueryCountReadable, articles.Count());
             }
@@ -99,14 +104,14 @@ namespace Kuchulem.MarkDownBlog.Services
             return articles;
         }
 
-        private IEnumerable<Article> GetAllArticles()
+        private IEnumerable<Article> GetAllArticles(bool noCache = false)
         {
 #if DEBUG
             this.WriteDebugLine();
 #endif
             var articles = cacheProvider.All();
 
-            if(!articles.Any())
+            if(!articles.Any() || noCache)
             {
 #if DEBUG
                 this.WriteDebugLine(message: "No cache");

@@ -1,8 +1,11 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model Kuchulem.MarkdownBlog.Core.Models.Pages.PageViewModel
+@section Stylesheets {
+    <link rel="stylesheet" href="~/css/article.css" />
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<Article role="document">
+    <h1>@Html.DisplayFor(m => m.Title)</h1>
+    <section class="content">
+        @Html.Raw(Model.HtmlContent)
+    </section>
+</Article>

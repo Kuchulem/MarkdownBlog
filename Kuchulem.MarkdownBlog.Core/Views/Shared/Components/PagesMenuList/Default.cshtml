@@ -1,0 +1,6 @@
+﻿@model Kuchulem.MarkdownBlog.Core.Models.Pages.PageMenuListViewModel
+
+@foreach(var item in Model.Pages)
+{
+    <li><a asp-area="" asp-controller="Pages" asp-action="Page" asp-route-slug="@(item.Slug)">@item.Title</a></li>
+}

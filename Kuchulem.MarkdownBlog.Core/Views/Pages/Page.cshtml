@@ -1,0 +1,11 @@
+﻿@model Kuchulem.MarkdownBlog.Core.Models.Pages.PageViewModel
+@section Stylesheets {
+    <link rel="stylesheet" href="~/css/article.css" />
+}
+
+<Article role="document">
+    <h1>@Html.DisplayFor(m => m.Title)</h1>
+    <section class="content">
+        @Html.Raw(Model.HtmlContent)
+    </section>
+</Article>

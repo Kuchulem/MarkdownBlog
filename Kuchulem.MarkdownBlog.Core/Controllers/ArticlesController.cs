@@ -1,4 +1,4 @@
-﻿using Kuchulem.MarkDownBlog.Libs.Extensions;
+﻿using Kuchulem.MarkdownBlog.Libs.Extensions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 using System;
@@ -6,12 +6,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Kuchulem.MarkDownBlog.Models;
-using Kuchulem.MarkDownBlog.Services;
+using Kuchulem.MarkdownBlog.Models;
+using Kuchulem.MarkdownBlog.Services;
 using Microsoft.AspNetCore.Mvc.Routing;
 using Kuchulem.MarkdownBlog.Core.Models.Articles;
 
-namespace Kuchulem.MarkDownBlog.Core.Controllers
+namespace Kuchulem.MarkdownBlog.Core.Controllers
 {
     [Route("{Controller}")]
     public class ArticlesController : Controller

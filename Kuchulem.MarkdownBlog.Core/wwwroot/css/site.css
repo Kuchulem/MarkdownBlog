@@ -17,6 +17,7 @@ html {
 body {
     padding: 0;
     margin: 0;
+    min-height: 100vh;
 }
 
 .logo {
@@ -100,18 +101,6 @@ h4 {
     box-shadow: rgba(0,0,0,.33) 0 3px 5px;
 }
 
-code {
-    box-shadow: rgba(0,0,0,.67) 0 0 2px, rgba(0,0,0,.67) 0 3px 10px;
-    background-color: rgba(176, 196, 222, .67);
-    color: #232832;
-    padding: .2em;
-}
-
-pre code {
-    display: block;
-    padding: .5em;
-}
-
 /*
     HEADER
 */
@@ -120,8 +109,6 @@ header {
     width: 100%;
     margin: 0;
     padding: .5em 0;
-    display: block;
-    table-layout: fixed;
     background-color: #232832;
     color: lightsteelblue;
     font-size: 1em;
@@ -276,93 +263,87 @@ main {
     box-sizing: border-box;
 }
 
-/*
-    ARTICLE
-*/
-article[role=article] {
-    background-color: white;
+p img {
+    max-width: 70%;
+    display: block;
+    box-shadow: rgba(0,0,0,.67) 0 0 2px, rgba(0,0,0,.67) 0 3px 10px;
+    margin: auto;
 }
 
-    article[role=article] .article-pic {
+    p img + em { /* legend */
+        display: block;
+        margin: auto;
+        text-align: center;
+        font-size: .9em;
+        font-family: "Ubuntu Condensed";
+        font-style: italic;
+    }
+
+/*
+    FOOTER
+*/
+footer {
+    display: block;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: #232832;
+    color: lightsteelblue;
+    font-size: 1em;
+    font-family: "Ubuntu Condensed";
+}
+
+    footer > div {
+        display: flex;
         width: 100%;
         margin: 0;
-        padding: 0;
-        background-size: cover;
-        background-position: center center;
-        background-color: #232832;
-        height: 18vw;
-        position: relative;
+        padding: .5em 0;
     }
 
-        article[role=article] .article-pic h1 {
-            padding: .5em 15%;
-            margin: 0;
-            background-color: rgba(255,255,255,.67);
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            box-sizing: border-box;
-        }
-
-    article[role=article] section {
-        padding: 0;
-        width: 70%;
-        margin: auto;
-        box-sizing: border-box;
-        text-align: justify;
+    footer a, footer a:link, footer a:visited, footer a:hover, footer h2 {
+        color: lightsteelblue;
     }
 
-        article[role=article] section.summary {
-            font-weight: 200;
-            font-style: italic;
-            font-size: .9em;
-            background-color: white;
-            margin: 1em auto 2em auto;
+    footer a {
+        border-bottom: 1px solid #da8139;
+    }
+
+    footer h2 {
+        font-size: 1em;
+    }
+
+    footer section {
+        display: block;
+        flex: 1;
+        text-align: center;
+    }
+
+    footer .social-links {
+        padding: 0;
+        margin: 0;
+    }
+
+        footer .social-links li {
+            list-style: none;
         }
 
-        article[role=article] section > * {
-            margin: 1em 0;
-        }
-
-        article[role=article] section p img {
-            display: block;
-            box-shadow: rgba(0,0,0,.67) 0 0 2px, rgba(0,0,0,.67) 0 3px 10px;
-            margin: auto;
-        }
-
-            article[role=article] section p img + em { /* legend */
-                display: block;
-                margin: auto;
-                text-align: center;
-                font-size: .9em;
-                font-family: "Ubuntu Condensed";
-                font-style: italic;
+            footer .social-links li img {
+                display: inline-block;
+                width: 3em;
+                height: 3em;
             }
 
-        article[role=article] section ul li {
-            display: table;
-            list-style-type: none;
-        }
-
-            article[role=article] section ul li::before {
-                display: table-cell;
-                content: "-";
-                padding-right: .3em;
-                font-weight: bold;
-                font-family: "Ubuntu Condensed";
+            footer .social-links li a {
+                border-bottom: none;
             }
 
-        article[role=article] section blockquote {
-            font-size: .9em;
-            padding: .5em;
-            box-shadow: rgba(0,0,0,.67) 0 0 2px, rgba(0,0,0,.67) 0 3px 10px;
-            border: 0;
-            border-left: .3em solid rgba(176, 196, 222, .67);
-        }
+    footer .logo {
+        width: 5em;
+        height: 5em;
+    }
 
-            article[role=article] section blockquote p {
-                border-spacing: .5em;
-                margin: 0;
-                padding: 0;
-            }
+    footer [role=complementary] {
+        display: block;
+        text-align: center;
+        font-size: .8em;
+    }

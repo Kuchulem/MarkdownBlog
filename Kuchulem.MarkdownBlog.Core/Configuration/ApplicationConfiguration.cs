@@ -5,7 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Kuchulem.MarkDownBlog.Core.Configuration
+namespace Kuchulem.MarkdownBlog.Core.Configuration
 {
     public class ApplicationConfiguration : IServicesConfiguration
     {

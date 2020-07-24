@@ -4,12 +4,12 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Kuchulem.MarkdownBlog.Services.Configurations;
-using Kuchulem.MarkDownBlog.Models;
+using Kuchulem.MarkdownBlog.Models;
 #if DEBUG
-using Kuchulem.MarkDownBlog.Libs.Extensions;
+using Kuchulem.MarkdownBlog.Libs.Extensions;
 #endif
 
-namespace Kuchulem.MarkDownBlog.Services
+namespace Kuchulem.MarkdownBlog.Services
 {
     public abstract class FileModelServiceBase<T>
         where T : IFileModel, new()

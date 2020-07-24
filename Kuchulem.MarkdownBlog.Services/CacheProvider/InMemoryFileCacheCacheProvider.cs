@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 #if DEBUG
-using Kuchulem.MarkDownBlog.Libs.Extensions;
-using Kuchulem.MarkDownBlog.Models;
+using Kuchulem.MarkdownBlog.Libs.Extensions;
+using Kuchulem.MarkdownBlog.Models;
 #endif
 
-namespace Kuchulem.MarkDownBlog.Services.CacheProvider
+namespace Kuchulem.MarkdownBlog.Services.CacheProvider
 {
 
     public class InMemoryFileCacheCacheProvider<T> : IFileModelCacheProvider<T>
@@ -15,16 +15,16 @@ namespace Kuchulem.MarkDownBlog.Services.CacheProvider
     {
         private readonly Dictionary<string, object> alternatStorage = new Dictionary<string, object>();
 
-        private readonly Dictionary<string, T> Storage = new Dictionary<string, T>();
+        private readonly Dictionary<string, T> storage = new Dictionary<string, T>();
 
-        private readonly Dictionary<string, IEnumerable<string>> QueryStorage = new Dictionary<string, IEnumerable<string>>();
+        private readonly Dictionary<string, IEnumerable<string>> queryStorage = new Dictionary<string, IEnumerable<string>>();
 
         public IEnumerable<T> All()
         {
 #if DEBUG
             this.WriteDebugLine();
 #endif
-            return Storage.Values;
+            return storage.Values;
         }
 
         public T Get(string fileName)
@@ -32,7 +32,7 @@ namespace Kuchulem.MarkDownBlog.Services.CacheProvider
 #if DEBUG
             this.WriteDebugLine(message: fileName);
 #endif
-            return Storage.ContainsKey(fileName) ? Storage[fileName] : default;
+            return storage.ContainsKey(fileName) ? storage[fileName] : default;
         }
 
         public IEnumerable<T> GetQuery(string query)
@@ -40,10 +40,10 @@ namespace Kuchulem.MarkDownBlog.Services.CacheProvider
 #if DEBUG
             this.WriteDebugLine(message: query);
 #endif
-            if (!QueryStorage.ContainsKey(query))
+            if (!queryStorage.ContainsKey(query))
                 return Enumerable.Empty<T>();
 
-            return QueryStorage[query].Select(f => Get(f)).Where(f => f != null).ToList();
+            return queryStorage[query].Select(f => Get(f)).Where(f => f != null).ToList();
         }
 
         public void Set(T fileModel)
@@ -51,7 +51,7 @@ namespace Kuchulem.MarkDownBlog.Services.CacheProvider
 #if DEBUG
             this.WriteDebugLine(message: fileModel.Name);
 #endif
-            Storage[fileModel.Name] = fileModel;
+            storage[fileModel.Name] = fileModel;
         }
 
         public void Set(IEnumerable<T> fileModels)
@@ -68,7 +68,7 @@ namespace Kuchulem.MarkDownBlog.Services.CacheProvider
 #if DEBUG
             this.WriteDebugLine(message: query);
 #endif
-            QueryStorage[query] = fileModels.Select(f => f.Name).ToList();
+            queryStorage[query] = fileModels.Select(f => f.Name).ToList();
         }
 
         public void Store<TData>(string query, TData data)
@@ -88,6 +88,16 @@ namespace Kuchulem.MarkDownBlog.Services.CacheProvider
                 return default;
 
             return (TData)alternatStorage[query];
+        }
+
+        public void ResetCache()
+        {
+#if DEBUG
+            this.WriteDebugLine(message: "reset cache");
+#endif
+            alternatStorage.Clear();
+            storage.Clear();
+            queryStorage.Clear();
         }
     }
 }

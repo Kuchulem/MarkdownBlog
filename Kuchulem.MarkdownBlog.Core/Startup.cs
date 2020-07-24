@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Kuchulem.MarkdownBlog.Services.Configurations;
-using Kuchulem.MarkDownBlog.Core.Configuration;
-using Kuchulem.MarkDownBlog.Models;
-using Kuchulem.MarkDownBlog.Services;
-using Kuchulem.MarkDownBlog.Services.CacheProvider;
+using Kuchulem.MarkdownBlog.Core.Configuration;
+using Kuchulem.MarkdownBlog.Models;
+using Kuchulem.MarkdownBlog.Services;
+using Kuchulem.MarkdownBlog.Services.CacheProvider;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -36,8 +36,10 @@ namespace Kuchulem.MarkdownBlog.Core
             services.AddSingleton<IServicesConfiguration>(appConfiguration);
 
             services.AddSingleton<IFileModelCacheProvider<Article>>(new InMemoryFileCacheCacheProvider<Article>());
+            services.AddSingleton<IFileModelCacheProvider<Page>>(new InMemoryFileCacheCacheProvider<Page>());
 
             services.AddTransient<ArticleService>();
+            services.AddTransient<PageService>();
 
             services.AddControllersWithViews();
         }

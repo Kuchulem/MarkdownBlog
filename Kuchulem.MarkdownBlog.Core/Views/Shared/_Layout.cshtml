@@ -1,4 +1,4 @@
-﻿@{ 
+﻿@{
     bool IsHome = this.ViewContext.RouteData.Values["Controller"].ToString() == "Home";
 }
 <!DOCTYPE html>
@@ -12,6 +12,8 @@
     <!-- icons fonts -->
     <link rel="stylesheet" href="~/css/icons.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/prism.css" />
+    @RenderSection("Stylesheets", required: false)
 </head>
 <body>
     <header role="banner" class="light-bottom-shadow @(IsHome ? "" : "slim")">
@@ -28,9 +30,7 @@
                 <li>
                     <a asp-area="" asp-controller="Articles" asp-action="Index">Articles</a>
                 </li>
-                <li>
-                    <a asp-area="" asp-controller="Articles" asp-action="Index">Articles</a>
-                </li>
+                @await Component.InvokeAsync("PagesMenuList")
             </ul>
         </nav>
     </header>
@@ -38,8 +38,28 @@
         @RenderBody()
     </main>
     <footer role="contentinfo">
-        &copy; 2020 - Kuchulem - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        <div>
+            <section>
+                <h2>Retrouvez-moi sur github</h2>
+                <ul class="social-links">
+                    <li><a target="_blank" href="https://github.com/Kuchulem"><img src="/pictures/social/github_small.svg" alt="Kuchulem on GitHub" /></a></li>
+                </ul>
+            </section>
+            <section>
+                <partial name="Logo.cshtml" />
+                &copy; 2020 - Kuchulem
+            </section>
+            <section>
+                <p>
+                    @await Component.InvokeAsync("PageLink", "privacy")
+                </p>
+            </section>
+        </div>
+        <div role="complementary">
+            Réalisé avec @await Component.InvokeAsync("PageLink", "kuchulem-markdownblog-project")
+        </div>
     </footer>
+    <script src="~/js/prism.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @RenderSection("Scripts", required: false)
 </body>

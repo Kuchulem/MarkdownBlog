@@ -4,7 +4,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 
-namespace Kuchulem.MarkDownBlog.Client.Extensions
+namespace Kuchulem.MarkdownBlog.Client.Extensions
 {
     public static class ObjectExtensions
     {

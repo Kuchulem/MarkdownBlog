@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
 
-namespace Kuchulem.MarkDownBlog.Libs.Extensions
+namespace Kuchulem.MarkdownBlog.Libs.Extensions
 {
     public static class ObjectExtensions
     {

@@ -1,10 +1,10 @@
-﻿using Kuchulem.MarkDownBlog.Models;
+﻿using Kuchulem.MarkdownBlog.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Kuchulem.MarkDownBlog.Services.CacheProvider
+namespace Kuchulem.MarkdownBlog.Services.CacheProvider
 {
     public interface IFileModelCacheProvider<T>
         where T : IFileModel
@@ -24,5 +24,7 @@ namespace Kuchulem.MarkDownBlog.Services.CacheProvider
         void Store<TData>(string query, TData data);
 
         TData Request<TData>(string query);
+
+        void ResetCache();
     }
 }
