@@ -5,6 +5,9 @@ using System.Threading.Tasks;
 
 namespace Kuchulem.MarkdownBlog.Core.Models.Articles
 {
+    /// <summary>
+    /// View model for article summary
+    /// </summary>
     public class ArticleSummaryViewModel
     {
         /// <summary>
@@ -28,6 +31,11 @@ namespace Kuchulem.MarkdownBlog.Core.Models.Articles
         public string MainPicture { get; set; }
 
         /// <summary>
+        /// Credits fot the picture
+        /// </summary>
+        public string MainPictureCredits { get; set; }
+
+        /// <summary>
         /// Summary of the article
         /// </summary>
         public string Summary { get; set; }
@@ -37,5 +45,10 @@ namespace Kuchulem.MarkdownBlog.Core.Models.Articles
         /// Last publication date
         /// </summary>
         public DateTime PublicationDate { get; set; }
+
+        /// <summary>
+        /// Author of the article
+        /// </summary>
+        public string Author { get; set; }
     }
 }

@@ -1,14 +1,20 @@
-﻿@model Kuchulem.MarkdownBlog.Core.Models.Articles.ArticleViewModel
+﻿@{
+    var culture = System.Globalization.CultureInfo.CurrentCulture;
+}
+@model Kuchulem.MarkdownBlog.Core.Models.Articles.ArticleViewModel
 @section Stylesheets {
     <link rel="stylesheet" href="~/css/article.css" />
 }
-
 <Article role="article">
     <div class="article-pic light-borders bottom-shadow-3d" style="background-image:url('@(Model.MainPicture)')">
+        @if (!string.IsNullOrEmpty(Model.MainPictureCredits))
+        {
+            <span class="picture-credits">@Model.MainPictureCredits</span>
+        }
         <h1>@Html.DisplayFor(m => m.Title)</h1>
     </div>
     <section class="publication" role="contentinfo">
-        <span>Publié le @(Model.PublicationDate.ToString("dd/MM/yyyy"))</span> par <a class="author">Kuchulem</a>
+        <span>Published on @(Model.PublicationDate.ToString("D", culture))</span> by <a class="author">@(Model.Author)</a>
         dans
         @foreach (var tag in Model.Tags)
         {

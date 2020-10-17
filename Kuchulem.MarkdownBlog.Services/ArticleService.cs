@@ -4,13 +4,17 @@ using Kuchulem.MarkdownBlog.Services.CacheProvider;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Kuchulem.MarkdownBlog.Services.MdFileParserServices;
 #if DEBUG
 using Kuchulem.MarkdownBlog.Libs.Extensions;
 #endif
 
 namespace Kuchulem.MarkdownBlog.Services
 {
-    public class ArticleService : FileModelServiceBase<Article>
+    /// <summary>
+    /// Service providing articles from MD files
+    /// </summary>
+    public class ArticleService : FileModelServiceBase<Article, ArticleData>
     {
         private const string ArticlesSubdirectory = "Articles";
         private const string ArticlesFileExtension = "md";
@@ -21,17 +25,33 @@ namespace Kuchulem.MarkdownBlog.Services
 
         protected override string FileExtension => ArticlesFileExtension;
 
-        public ArticleService(IServicesConfiguration configuration, IFileModelCacheProvider<Article> cacheProvider) 
-            : base(configuration)
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="configuration"></param>
+        /// <param name="cacheProvider"></param>
+        /// <param name="fileParserService"></param>
+        public ArticleService(IServicesConfiguration configuration, IFileModelCacheProvider<Article> cacheProvider, IMdFileParserService fileParserService)
+            : base(configuration, fileParserService)
         {
             this.cacheProvider = cacheProvider;
         }
 
+        /// <summary>
+        /// Resets the cache
+        /// </summary>
         public void ResetCache()
         {
-            cacheProvider.ResetCache();
+            cacheProvider.ClearCache();
         }
 
+        /// <summary>
+        /// Gets the last article publicated
+        /// </summary>
+        /// <param name="page"></param>
+        /// <param name="count"></param>
+        /// <param name="noCache"></param>
+        /// <returns></returns>
         public IEnumerable<Article> GetLastArticles(int page, int count, bool noCache = false)
         {
 #if DEBUG
@@ -41,7 +61,7 @@ namespace Kuchulem.MarkdownBlog.Services
 
             var articles = cacheProvider.GetQuery(query);
 
-            if(!articles.Any() || noCache)
+            if (!articles.Any() || noCache)
             {
 #if DEBUG
                 this.WriteDebugLine(message: "No cache");
@@ -60,11 +80,16 @@ namespace Kuchulem.MarkdownBlog.Services
             return articles;
         }
 
+        /// <summary>
+        /// Gets the number of readable articles
+        /// </summary>
+        /// <param name="noCache"></param>
+        /// <returns></returns>
         public int GetCountReadableArticles(bool noCache = false)
         {
             var count = cacheProvider.Request<int>(QueryCountReadable);
 
-            if(count == default || noCache)
+            if (count == default || noCache)
             {
                 count = GetReadableArticles(noCache).Count();
 
@@ -74,11 +99,24 @@ namespace Kuchulem.MarkdownBlog.Services
             return count;
         }
 
+        /// <summary>
+        /// Gets an article from its slug
+        /// </summary>
+        /// <param name="slug"></param>
+        /// <param name="noCache"></param>
+        /// <returns></returns>
         public Article GetArticle(string slug, bool noCache = false)
         {
-            return GetReadableArticles(noCache).Where(a => a.Slug == slug).FirstOrDefault();
+            return GetReadableArticles(noCache)
+                .Where(a => a.Slug == slug)
+                .FirstOrDefault();
         }
 
+        /// <summary>
+        /// Gets readable articles (valid articles and with publication date not after now
+        /// </summary>
+        /// <param name="noCache"></param>
+        /// <returns></returns>
         private IEnumerable<Article> GetReadableArticles(bool noCache = false)
         {
 #if DEBUG
@@ -88,7 +126,7 @@ namespace Kuchulem.MarkdownBlog.Services
 
             var articles = cacheProvider.GetQuery(query);
 
-            if(!articles.Any() || noCache)
+            if (!articles.Any() || noCache)
             {
 #if DEBUG
                 this.WriteDebugLine(message: "No cache");
@@ -104,6 +142,11 @@ namespace Kuchulem.MarkdownBlog.Services
             return articles;
         }
 
+        /// <summary>
+        /// Gets all articles
+        /// </summary>
+        /// <param name="noCache"></param>
+        /// <returns></returns>
         private IEnumerable<Article> GetAllArticles(bool noCache = false)
         {
 #if DEBUG
@@ -111,12 +154,17 @@ namespace Kuchulem.MarkdownBlog.Services
 #endif
             var articles = cacheProvider.All();
 
-            if(!articles.Any() || noCache)
+            if (!articles.Any() || noCache)
             {
 #if DEBUG
                 this.WriteDebugLine(message: "No cache");
 #endif
                 articles = GetAll();
+                foreach (var article in articles)
+                {
+                    article.Author ??= configuration.DefaultAuthor;
+                }
+
                 cacheProvider.Set(articles);
             }
 

@@ -11,17 +11,29 @@ using Kuchulem.MarkdownBlog.Services;
 
 namespace Kuchulem.MarkdownBlog.Core.Controllers
 {
+    /// <summary>
+    /// Controller for the home page
+    /// </summary>
     public class HomeController : Controller
     {
         private readonly PageService pageService;
         private readonly ILogger<HomeController> logger;
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="pageService"></param>
+        /// <param name="logger"></param>
         public HomeController(PageService pageService, ILogger<HomeController> logger)
         {
             this.pageService = pageService;
             this.logger = logger;
         }
 
+        /// <summary>
+        /// Home page
+        /// </summary>
+        /// <returns></returns>
         public IActionResult Index()
         {
             var page = pageService.GetPage("home");
@@ -37,7 +49,7 @@ namespace Kuchulem.MarkdownBlog.Core.Controllers
 
             return View(new PageViewModel
             {
-                Description = page.Description,
+                Description = page.Summary,
                 HtmlContent = page.HtmlContent,
                 Slug = page.Slug,
                 Tags = page.Tags,
@@ -45,6 +57,10 @@ namespace Kuchulem.MarkdownBlog.Core.Controllers
             });
         }
 
+        /// <summary>
+        /// Error page
+        /// </summary>
+        /// <returns></returns>
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

@@ -5,18 +5,7 @@
     <div class="cards-container">
 @foreach (var item in Model.Elements)
 {
-        <section class="article card">
-            <div class="card-picture bottom-shadow-3d" style="background-image:url(@(item.MainPicture))">
-                <h2>@item.Title</h2>
-            </div>
-            <div class="card-content">
-                <div class="publication">
-                    <span>Publié le @(item.PublicationDate.ToString("dd/MM/yyyy"))</span> par <a class="author">Kuchulem</a>
-                </div>
-                @Html.Raw(item.Summary)
-            </div>
-            <a asp-area="" asp-controller="Articles" asp-action="Article" asp-route-slug="@(item.Slug)">Lire</a>
-        </section>
+        <partial name="_ArticleSummary" for="@(item)"/>
 }
     </div>
 </article>

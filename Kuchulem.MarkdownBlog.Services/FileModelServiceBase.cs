@@ -5,15 +5,23 @@ using System.Linq;
 using System.Threading.Tasks;
 using Kuchulem.MarkdownBlog.Services.Configurations;
 using Kuchulem.MarkdownBlog.Models;
+using Kuchulem.MarkdownBlog.Services.MdFileParserServices;
 #if DEBUG
 using Kuchulem.MarkdownBlog.Libs.Extensions;
 #endif
 
 namespace Kuchulem.MarkdownBlog.Services
 {
-    public abstract class FileModelServiceBase<T>
+    /// <summary>
+    /// Base class for services providing MD file based models
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <typeparam name="TData"></typeparam>
+    public abstract class FileModelServiceBase<T, TData>
         where T : IFileModel, new()
     {
+        private readonly IMdFileParserService fileParserService;
+
         /// <summary>
         /// Confguration of the server application
         /// </summary>
@@ -38,13 +46,13 @@ namespace Kuchulem.MarkdownBlog.Services
         /// Constructor
         /// </summary>
         /// <param name="configuration">The configuration of the application</param>
-        public FileModelServiceBase(IServicesConfiguration configuration)
+        public FileModelServiceBase(IServicesConfiguration configuration, IMdFileParserService fileParserService)
         {
 #if DEBUG
             this.WriteDebugLine();
 #endif
             this.configuration = configuration;
-
+            this.fileParserService = fileParserService;
             filesPath = MakeFilesPath();
         }
 
@@ -104,6 +112,11 @@ namespace Kuchulem.MarkdownBlog.Services
             return new FileInfo(Path.Combine(filesPath.FullName, FileFullName(fileName)));
         }
 
+        /// <summary>
+        /// Converts a file to its model
+        /// </summary>
+        /// <param name="file"></param>
+        /// <returns></returns>
         protected T ConvertFileToFileModel(FileInfo file)
         {
 #if DEBUG
@@ -121,6 +134,7 @@ namespace Kuchulem.MarkdownBlog.Services
                 Name = file.Name,
                 RawContent = content
             };
+            fileParserService.ParseFile<TData>(model);
 #if DEBUG
             this.WriteDebugLine(message: "Model created");
 #endif
@@ -151,18 +165,33 @@ namespace Kuchulem.MarkdownBlog.Services
             return ConvertFileToFileModel(file);
         }
 
+        /// <summary>
+        /// Gets all md file based models
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<T> GetAll()
         {
 #if DEBUG
             this.WriteDebugLine();
 #endif
-            var files = filesPath.GetFiles()
-                .Where(f => f.Extension == $".{FileExtension}")
-                .Select(f => ConvertFileToFileModel(f));
+
+            var files = GetFilesForDirectory(filesPath);
 
 #if DEBUG
             this.WriteDebugLine(message: $"return {files.Count()} files");
 #endif
+            return files;
+        }
+
+        private IEnumerable<T> GetFilesForDirectory(DirectoryInfo directory)
+        {
+            var files = directory.GetFiles()
+                .Where(f => f.Extension == $".{FileExtension}")
+                .Select(f => ConvertFileToFileModel(f)).ToList();
+
+            foreach (var subDirectory in directory.GetDirectories())
+                files.AddRange(GetFilesForDirectory(subDirectory));
+
             return files;
         }
 

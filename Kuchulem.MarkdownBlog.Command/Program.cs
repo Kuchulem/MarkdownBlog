@@ -31,16 +31,16 @@ namespace Kuchulem.MarkdownBlog.Command
         static void Main(string[] args)
         {
             ConsoleExtended.DrawPattern(
-                "                      " + Environment.NewLine +
-                "  ****          ****  " + Environment.NewLine +
-                "  **   **    **   **  " + Environment.NewLine +
-                "  **   **   **    **  " + Environment.NewLine +
-                "  **   **  **     **  " + Environment.NewLine +
-                "  **   ** **      **  " + Environment.NewLine +
-                "  **   **  **     **  " + Environment.NewLine +
-                "  **   **   **    **  " + Environment.NewLine +
-                "  **   **    **   **  " + Environment.NewLine +
-                "  ****          ****  ",
+                "                       " + Environment.NewLine +
+                "  **** **        ****  " + Environment.NewLine +
+                "  **   **          **  " + Environment.NewLine +
+                "  **   **     **   **  " + Environment.NewLine +
+                "  **   **   **     **  " + Environment.NewLine +
+                "  **   ** **       **  " + Environment.NewLine +
+                "  **   **   **     **  " + Environment.NewLine +
+                "  **   **     **   **  " + Environment.NewLine +
+                "  **   **          **  " + Environment.NewLine +
+                "  **** **        ****  ",
                 new Dictionary<char, ConsoleColor?>
                 {
                     { ' ', ConsoleColor.DarkGray },
@@ -133,20 +133,9 @@ namespace Kuchulem.MarkdownBlog.Command
             ConsoleExtended.WritePrefixedLine("Error   :", message, ConsoleColor.DarkGray, ConsoleColor.DarkRed, ConsoleColor.Black);
         }
 
-        private static void WriteWarning(string message)
-        {
-            ConsoleExtended.WritePrefixedLine("Warning :", message, ConsoleColor.DarkGray, ConsoleColor.DarkBlue, ConsoleColor.Black);
-        }
-
         private static void WriteInfo(string message)
         {
             ConsoleExtended.WritePrefixedLine("Info    :", message, ConsoleColor.DarkGray, ConsoleColor.DarkGreen, ConsoleColor.Black);
-        }
-
-        private static void WriteLine(string message)
-        {
-            foreach (var line in message.Split(Environment.NewLine))
-                ConsoleExtended.WriteLine(line, ConsoleTextAlignment.Left, ConsoleColor.DarkGray, ConsoleColor.Black);
         }
 
         private static string GenerateKey()

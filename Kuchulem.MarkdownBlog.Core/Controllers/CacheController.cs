@@ -1,5 +1,5 @@
-﻿using Kuchulem.MarkdownBlog.Client.Extensions;
-using Kuchulem.MarkdownBlog.Services;
+﻿using Kuchulem.MarkdownBlog.Services;
+using Kuchulem.MarkdownBlog.Libs.Extensions;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -9,17 +9,31 @@ using System.Threading.Tasks;
 
 namespace Kuchulem.MarkdownBlog.Core.Controllers
 {
+    /// <summary>
+    /// Controller for cache management
+    /// </summary>
     public class CacheController : Controller
     {
         private readonly ArticleService articleService;
         private readonly PageService pageService;
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="articleService"></param>
+        /// <param name="pageService"></param>
         public CacheController(ArticleService articleService, PageService pageService)
         {
             this.articleService = articleService;
             this.pageService = pageService;
         }
 
+        /// <summary>
+        /// Action to reload the cache
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="scope"></param>
+        /// <returns></returns>
         public IActionResult Reload(string key, string scope)
         {
             var scopes = scope switch

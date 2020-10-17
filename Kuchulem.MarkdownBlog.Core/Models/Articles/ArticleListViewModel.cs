@@ -5,8 +5,14 @@ using System.Threading.Tasks;
 
 namespace Kuchulem.MarkdownBlog.Core.Models.Articles
 {
+    /// <summary>
+    /// View model for article list view
+    /// </summary>
     public class ArticleListViewModel : PaginationViewModel<ArticleSummaryViewModel>
     {
-        public override string Title => "Les derniers articles";
+        /// <summary>
+        /// see <see cref="PaginationViewModel{T}.Title"/>
+        /// </summary>
+        public override string Title => "Last articles";
     }
 }

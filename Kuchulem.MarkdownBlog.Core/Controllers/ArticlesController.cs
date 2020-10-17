@@ -10,9 +10,13 @@ using Kuchulem.MarkdownBlog.Models;
 using Kuchulem.MarkdownBlog.Services;
 using Microsoft.AspNetCore.Mvc.Routing;
 using Kuchulem.MarkdownBlog.Core.Models.Articles;
+using Kuchulem.MarkdownBlog.Core.Configuration;
 
 namespace Kuchulem.MarkdownBlog.Core.Controllers
 {
+    /// <summary>
+    /// Controller for articles
+    /// </summary>
     [Route("{Controller}")]
     public class ArticlesController : Controller
     {
@@ -20,11 +24,21 @@ namespace Kuchulem.MarkdownBlog.Core.Controllers
         private const int CountDefault = 20;
         private readonly ArticleService articleService;
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="articleService"></param>
         public ArticlesController(ArticleService articleService)
         {
             this.articleService = articleService;
         }
 
+        /// <summary>
+        /// Home page for articles
+        /// </summary>
+        /// <param name="page"></param>
+        /// <param name="count"></param>
+        /// <returns></returns>
         public IActionResult Index(int? page = null, int? count = null)
         {
 #if DEBUG
@@ -42,12 +56,14 @@ namespace Kuchulem.MarkdownBlog.Core.Controllers
 
             var list = articleService.GetLastArticles(actualPage, actualCount).Select(a => new ArticleSummaryViewModel
             {
+                Author = a.Author,
                 PublicationDate = a.PublicationDate,
                 Slug = a.Slug,
                 Summary = a.Summary,
                 Tags = a.Tags,
-                MainPicture = a.MainPicture,
-                Title = a.Title
+                MainPicture = a.Picture.Main,
+                MainPictureCredits = a.Picture.Credits,
+                Title = a.Title,
             }).ToList();
 
             var totalCount = articleService.GetCountReadableArticles();
@@ -63,7 +79,7 @@ namespace Kuchulem.MarkdownBlog.Core.Controllers
         }
 
         /// <summary>
-        /// 
+        /// Single article page
         /// </summary>
         /// <param name="slug"></param>
         /// <returns></returns>
@@ -80,8 +96,10 @@ namespace Kuchulem.MarkdownBlog.Core.Controllers
 
             return View(new ArticleViewModel
             {
+                Author = article.Author,
                 HtmlContent = article.HtmlContent,
-                MainPicture = article.MainPicture,
+                MainPicture = article.Picture.Main,
+                MainPictureCredits = article.Picture.Credits,
                 PublicationDate = article.PublicationDate,
                 Slug = article.Slug,
                 Summary = article.Summary,

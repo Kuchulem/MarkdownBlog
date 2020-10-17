@@ -1,0 +1,20 @@
+﻿@model Kuchulem.MarkdownBlog.Core.Models.Articles.ArticleSummaryViewModel
+@{
+    var publicationDate = Model.PublicationDate.ToString("D", System.Globalization.CultureInfo.CurrentCulture);
+}
+
+<section class="article card">
+    <div class="card-picture bottom-shadow-3d" style="background-image:url(@(Model.MainPicture))">
+        @if(!string.IsNullOrEmpty(Model.MainPictureCredits)){
+            <span class="picture-credits">@Model.MainPictureCredits</span>
+        }
+        <h2>@Model.Title</h2>
+    </div>
+    <div class="card-content">
+        <div class="publication">
+            <span>Publié le @(publicationDate)</span> par <a class="author">@(Model.Author)</a>
+        </div>
+        @Html.Raw(Model.Summary)
+    </div>
+    <a href="/Articles/@(Model.Slug)">Lire</a>
+</section>

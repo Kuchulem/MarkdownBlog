@@ -11,11 +11,15 @@ namespace Kuchulem.MarkdownBlog.Core.Configuration
     {
         public string DataFilesPath { get; set; }
 
+        public string DefaultAuthor { get; set; }
+
         public bool IsComplete
         {
             get
             {
-                return !string.IsNullOrEmpty(DataFilesPath);
+                return 
+                    !string.IsNullOrEmpty(DataFilesPath)
+                    && !string.IsNullOrEmpty(DefaultAuthor);
             }
         }
     }

@@ -3,129 +3,77 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using YamlDotNet.Core;
-using YamlDotNet.Serialization;
 #if DEBUG
 using Kuchulem.MarkdownBlog.Libs.Extensions;
 #endif
 
 namespace Kuchulem.MarkdownBlog.Models
 {
+    /// <summary>
+    /// An article
+    /// </summary>
     public class Article : IFileModel
     {
-        private string rawContent;
-
-        /// <see cref="IFileModel.Name"/>
+        #region IFileModel
+        /// <summary>
+        /// see <see cref="IFileModel.Name"/>
+        /// </summary>
         public string Name { get; set; }
 
-        /// <see cref="IFileModel.Extension"/>
+        /// <summary>
+        /// see <see cref="IFileModel.Extension"/>
+        /// </summary>
         public string Extension { get; set; }
 
-        public string Slug { get; set; }
+        /// <summary>
+        /// see <see cref="IFileModel.RawContent"/>
+        /// </summary>
+        public string RawContent { get; set; }
 
-        /// <see cref="IFileModel.RawContent"/>
-        public string RawContent
-        {
-            get => rawContent;
-            set
-            {
-                rawContent = value;
-                ParseRawContent();
-            }
-        }
-
+        /// <summary>
+        /// see <see cref="IFileModel.Title"/>
+        /// </summary>
         public string Title { get; set; }
 
+        /// <summary>
+        /// see <see cref="IFileModel.Tags"/>
+        /// </summary>
         public IEnumerable<string> Tags { get; set; }
 
-        public string MainPicture { get; set; }
-
-        public string Thumbnail { get; set; }
-
-        public DateTime PublicationDate { get; set; }
-
-        public string Summary { get; set; }
-
+        /// <summary>
+        /// see <see cref="IFileModel.IsValid"/>
+        /// </summary>
         public bool IsValid { get; set; }
 
         /// <summary>
-        /// Html content of the article
+        /// see <see cref="IFileModel.HtmlContent"/>
         /// </summary>
-        public string HtmlContent { get; private set; }
+        public string HtmlContent { get; set; }
+        #endregion
 
-        private void ParseRawContent()
-        {
-#if DEBUG
-            this.WriteDebugLine();
-#endif
-            IsValid = false;
+        /// <summary>
+        /// Slug of the article (titled formed for unique url)
+        /// </summary>
+        public string Slug { get; set; }
 
-            using var reader = new StringReader(RawContent);
-            var line = reader.ReadLine();
-            if (line[0] == '#')
-                Title = line.Substring(1).Trim();
-            else
-                return;
+        /// <summary>
+        /// Picture of the article
+        /// </summary>
+        public ArticlePicture Picture { get; set; }
 
-            do
-            {
-                line = reader.ReadLine();
-            } while (line == "");
+        /// <summary>
+        /// Date of publication of the article
+        /// </summary>
+        public DateTime PublicationDate { get; set; }
 
-            if (line.StartsWith("```blog"))
-                ReadArticleData(reader);
+        /// <summary>
+        /// Short summary of the article displayed in thumbnails and just bellow the title
+        /// </summary>
+        public string Summary { get; set; }
 
-            do
-            {
-                line = reader.ReadLine();
-            } while (line == "");
-
-            Summary = "";
-
-            while (!string.IsNullOrEmpty(line))
-            {
-                Summary += line + "\n";
-                line = reader.ReadLine();
-            }
-
-            using (var writer = new StringWriter())
-            {
-                Markdig.Markdown.Convert(Summary, new Markdig.Renderers.HtmlRenderer(writer));
-                Summary = writer.ToString();
-            }
-
-            var md = reader.ReadToEnd();
-
-            using (var writer = new StringWriter())
-            {
-                Markdig.Markdown.Convert(md, new Markdig.Renderers.HtmlRenderer(writer));
-                HtmlContent = writer.ToString();
-            }
-
-            IsValid = true;
-        }
-
-        private void ReadArticleData(StringReader reader)
-        {
-#if DEBUG
-            this.WriteDebugLine();
-#endif
-            var yaml = "";
-            string line;
-            while((line = reader.ReadLine()) != "```")
-            {
-                yaml += line + Environment.NewLine;
-            }
-
-            var desrializer = new DeserializerBuilder().Build();
-
-            var articleData = desrializer.Deserialize<ArticleData>(yaml);
-
-            Tags = articleData.Tags;
-            MainPicture = articleData.Picture.Main;
-            Thumbnail = articleData.Picture.Thumbnail;
-            PublicationDate = articleData.PublicationDate;
-            Slug = articleData.Slug;
-        }
+        /// <summary>
+        /// Author of the article
+        /// </summary>
+        public string Author { get; set; }
     }
 }

@@ -1,18 +1,21 @@
 ﻿@{
     bool IsHome = this.ViewContext.RouteData.Values["Controller"].ToString() == "Home";
+    var version = System.Reflection.Assembly.GetEntryAssembly().GetName().Version;
+    string projectVersion = version.ToString();
 }
+@model Kuchulem.MarkdownBlog.Core.Models.IPageViewModel
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Kuchulem</title>
+    <title>@Model.Title - Kuchulem</title>
     <!-- Fonts from google fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Ubuntu+Condensed&display=swap" rel="stylesheet">
     <!-- icons fonts -->
-    <link rel="stylesheet" href="~/css/icons.css" />
-    <link rel="stylesheet" href="~/css/site.css" />
-    <link rel="stylesheet" href="~/css/prism.css" />
+    <link rel="stylesheet" href="~/css/icons.css?v=@(projectVersion)" />
+    <link rel="stylesheet" href="~/css/site.css?v=@(projectVersion)" />
+    <link rel="stylesheet" href="~/css/prism.css?v=@(projectVersion)" />
     @RenderSection("Stylesheets", required: false)
 </head>
 <body>
@@ -40,7 +43,7 @@
     <footer role="contentinfo">
         <div>
             <section>
-                <h2>Retrouvez-moi sur github</h2>
+                <h2>Find me on GitHub</h2>
                 <ul class="social-links">
                     <li><a target="_blank" href="https://github.com/Kuchulem"><img src="/pictures/social/github_small.svg" alt="Kuchulem on GitHub" /></a></li>
                 </ul>
@@ -56,11 +59,13 @@
             </section>
         </div>
         <div role="complementary">
-            Réalisé avec @await Component.InvokeAsync("PageLink", "kuchulem-markdownblog-project")
+            Made with @await Component.InvokeAsync("PageLink", "kuchulem-markdownblog-project")
         </div>
     </footer>
     <script src="~/js/prism.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @RenderSection("Scripts", required: false)
+    </script>
+
 </body>
 </html>

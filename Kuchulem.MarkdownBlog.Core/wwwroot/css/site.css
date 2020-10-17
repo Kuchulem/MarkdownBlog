@@ -231,6 +231,8 @@ main {
     padding: .5em;
     box-sizing: border-box;
     display: block;
+    position: relative;
+    z-index: 1;
 }
 
 .card-picture {
@@ -251,6 +253,17 @@ main {
         position: absolute;
         bottom: 0;
         left: 0;
+        right: 0;
+        box-sizing: border-box;
+    }
+
+    .card-picture .picture-credits {
+        font-size: .7em;
+        padding: .5em .5em;
+        margin: 0;
+        background-color: rgba(255,255,255,.67);
+        position: absolute;
+        top: 0;
         right: 0;
         box-sizing: border-box;
     }
