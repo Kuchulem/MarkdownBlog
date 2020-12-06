@@ -109,9 +109,12 @@ header {
     width: 100%;
     margin: 0;
     padding: .5em 0;
-    background-color: #232832;
     color: lightsteelblue;
     font-size: 1em;
+    background: #232832 radial-gradient(rgba(255,255,255,.15), rgba(255,255,255,0) 50%);
+    background-repeat: no-repeat;
+    background-position: top;
+    background-size: 200% 200%;
 }
 
     header a, header a:link, header a:visited, header a:hover {
@@ -174,46 +177,49 @@ nav {
             padding: 0 1em;
         }
 
-header.slim {
-    display: table;
-    table-layout: fixed;
-    width: 100%;
-}
+@media (min-width: 900px) {
 
-    header.slim [role=heading] {
-        display: table-cell;
-        text-align: left;
+    header.slim {
+        display: table;
+        table-layout: fixed;
+        width: 100%;
     }
 
-        header.slim [role=heading] .logo, header.slim [role=heading] a {
-            margin-left: 0;
-            margin-right: 0;
-            vertical-align: middle;
-            display: inline-block;
+        header.slim [role=heading] {
+            display: table-cell;
+            text-align: left;
         }
 
-        header.slim [role=heading] p {
-            text-align: left;
-            padding-left: 1em;
-            display: inline-block;
+            header.slim [role=heading] .logo, header.slim [role=heading] a {
+                margin-left: 0;
+                margin-right: 0;
+                vertical-align: middle;
+                display: inline-block;
+            }
+
+            header.slim [role=heading] p {
+                text-align: left;
+                padding-left: 1em;
+                display: inline-block;
+                vertical-align: middle;
+                margin: 0;
+                padding: 0;
+                margin-left: 1em;
+            }
+
+        header.slim nav {
+            display: table-cell;
             vertical-align: middle;
             margin: 0;
+            text-align: right;
             padding: 0;
-            margin-left: 1em;
-        }
-
-    header.slim nav {
-        display: table-cell;
-        vertical-align: middle;
-        margin: 0;
-        text-align: right;
-        padding: 0;
-        height: auto;
-    }
-
-        header.slim nav ul {
             height: auto;
         }
+
+            header.slim nav ul {
+                height: auto;
+            }
+}
 /*
     MAIN
 */
@@ -243,6 +249,7 @@ main {
     background-position: center center;
     background-color: #232832;
     height: 15vw;
+    min-height: 250px;
     position: relative;
 }
 
@@ -360,3 +367,51 @@ footer {
         text-align: center;
         font-size: .8em;
     }
+
+table {
+    border-collapse: collapse;
+}
+
+    table th {
+        color: #232832;
+        font-family: "Ubuntu Condensed";
+        font-weight: 800;
+        vertical-align: bottom;
+    }
+
+    table th, table td {
+        border: #333 solid 1px;
+        padding: .5em;
+        vertical-align: top;
+    }
+
+#cookie-message {
+    position: fixed;
+    display: none;
+    opacity: 0;
+    background-color: rgba(33,33,33,.85);
+    z-index:3;
+    transition: opacity ease-in-out 300ms;
+    font-size: 1.1em;
+    color: white;
+    bottom:0;
+    padding:10px;
+    width:100%;
+    text-align: center;
+}
+
+    #cookie-message button {
+        background-color: #da8139;
+        border: none;
+        border-radius: 3px;
+        padding: .5em;
+    }
+
+    #cookie-message.display {
+        display: block;
+        opacity: 1;
+    }
+
+.article.card {
+    cursor: pointer;
+}

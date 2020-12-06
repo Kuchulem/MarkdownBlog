@@ -12,9 +12,9 @@
     </div>
     <div class="card-content">
         <div class="publication">
-            <span>Publié le @(publicationDate)</span> par <a class="author">@(Model.Author)</a>
+            <span>Published on @(publicationDate)</span> by <a class="author">@(Model.Author)</a>
         </div>
         @Html.Raw(Model.Summary)
     </div>
-    <a href="/Articles/@(Model.Slug)">Lire</a>
+    <a class="read" href="/Articles/@(Model.Slug)">Read</a>
 </section>

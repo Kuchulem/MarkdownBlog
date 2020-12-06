@@ -10,6 +10,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@Model.Title - Kuchulem</title>
+    <meta name="description" content="@Model.Summary" />
+    <meta name="author" content="@Model.Author" />
     <!-- Fonts from google fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Ubuntu+Condensed&display=swap" rel="stylesheet">
     <!-- icons fonts -->
@@ -25,7 +27,7 @@
                 <partial name="Logo.cshtml" />
                 Kuchulem
             </a>
-            <p role="definition">A dev's diary</p>
+            <p role="definition">Experiment, learn, share</p>
         </div>
         <nav role="navigation">
             <a role="button" class="icon-menu"></a>
@@ -59,13 +61,48 @@
             </section>
         </div>
         <div role="complementary">
-            Made with @await Component.InvokeAsync("PageLink", "kuchulem-markdownblog-project")
+            Made with @await Component.InvokeAsync("PageLink", "markdownblog")
         </div>
     </footer>
+    <div id="cookie-message">
+        <p>This site uses cookies for analytics pupose. Please accept them to continue your navigation.</p>
+        <p>see @await Component.InvokeAsync("PageLink", "privacy") for more informaition and manage the usage of the cookies</p>
+        <button id="accept-cookies">Accept cookies</button>
+    </div>
     <script src="~/js/prism.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @RenderSection("Scripts", required: false)
-    </script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-180751015-1"></script>
+    <script>
+        const cookieAcceptKey = "kuchulem.io.acceptCookies";
+        const accepted = window.localStorage.getItem(cookieAcceptKey) == "accepted";
 
+        if (!accepted) {
+            const cookieMessage = document.getElementById("cookie-message");
+            const button = document.getElementById("accept-cookies");
+
+            cookieMessage.classList.add('display');
+
+            button.onclick = () => {
+                cookieMessage.classList.remove('display');
+                window.localStorage.setItem(cookieAcceptKey, "accepted");
+            };
+        }
+
+        if (!window.analyticsRejectKey)
+            window.analyticsRejectKey = "kuchulem.io.rejectAnalytics";
+
+        const rejected = window.localStorage.getItem(window.analyticsRejectKey) == "rejected";
+
+        if (rejected) {
+            window.dataLayer = window.dataLayer || [];
+            function gtag() { dataLayer.push(arguments); }
+            gtag('js', new Date());
+
+            gtag('config', 'UA-180751015-1');
+        }
+
+    </script>
 </body>
 </html>

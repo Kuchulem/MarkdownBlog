@@ -1,9 +1,4 @@
-﻿using Kuchulem.MarkdownBlog.Libs.Extensions;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace Kuchulem.MarkdownBlog.Models
 {
@@ -59,6 +54,11 @@ namespace Kuchulem.MarkdownBlog.Models
         /// Slug of the page (titled formed for unique url)
         /// </summary>
         public string Slug { get; set; }
+
+        /// <summary>
+        /// Author of the file
+        /// </summary>
+        public string Author { get; set; }
 
         /// <summary>
         /// Wether the page is provided in the blog

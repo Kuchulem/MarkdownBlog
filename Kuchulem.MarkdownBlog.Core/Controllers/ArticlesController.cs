@@ -1,16 +1,12 @@
-﻿using Kuchulem.MarkdownBlog.Libs.Extensions;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Net.Http;
-using System.Threading.Tasks;
 using Kuchulem.MarkdownBlog.Models;
 using Kuchulem.MarkdownBlog.Services;
-using Microsoft.AspNetCore.Mvc.Routing;
 using Kuchulem.MarkdownBlog.Core.Models.Articles;
-using Kuchulem.MarkdownBlog.Core.Configuration;
+#if DEBUG
+using Kuchulem.DotNet.ConsoleHelpers.Extensions;
+#endif
 
 namespace Kuchulem.MarkdownBlog.Core.Controllers
 {

@@ -16,14 +16,19 @@ namespace Kuchulem.MarkdownBlog.Core.Models.Pages
         public string Title { get; set; }
 
         /// <summary>
+        /// Title pf the page
+        /// </summary>
+        public string Summary { get; set; }
+        
+        /// <summary>
+        /// Title pf the page
+        /// </summary>
+        public string Author { get; set; }
+
+        /// <summary>
         /// Html content of the page
         /// </summary>
         public string HtmlContent { get; set; }
-
-        /// <summary>
-        /// Description of the page
-        /// </summary>
-        public string Description { get; set; }
 
         /// <summary>
         /// Tags for the page

@@ -19,6 +19,7 @@ namespace Kuchulem.MarkdownBlog.Services.MarkdownExtensions
 
             return pipeline;
         }
+
         public static MarkdownPipelineBuilder UseLastArticle(this MarkdownPipelineBuilder pipeline, LastArticlesOptions options)
         {
             var extensions = pipeline.Extensions;

@@ -64,6 +64,10 @@ namespace Kuchulem.MarkdownBlog.Services
             if (!pages.Any())
             {
                 pages = GetAll().Where(p => p.Active);
+                foreach (var page in pages)
+                {
+                    page.Author ??= configuration.DefaultAuthor;
+                }
 
                 cacheProvider.SetQuery(query, pages);
             }

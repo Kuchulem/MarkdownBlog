@@ -49,11 +49,12 @@ namespace Kuchulem.MarkdownBlog.Core.Controllers
 
             return View(new PageViewModel
             {
-                Description = page.Summary,
+                Summary = page.Summary,
                 HtmlContent = page.HtmlContent,
                 Slug = page.Slug,
                 Tags = page.Tags,
-                Title = page.Title
+                Title = page.Title,
+                Author = page.Author
             });
         }
 

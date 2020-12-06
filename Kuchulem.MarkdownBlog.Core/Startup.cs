@@ -69,6 +69,7 @@ namespace Kuchulem.MarkdownBlog.Core
             services.AddTransient((services) =>
             {
                 return new MarkdownPipelineBuilder()
+                    .UseAdvancedExtensions()
                     .UseLastArticles(services.GetService<LastArticlesOptions>())
                     .UseLastArticle(services.GetService<LastArticlesOptions>())
                     .Build();

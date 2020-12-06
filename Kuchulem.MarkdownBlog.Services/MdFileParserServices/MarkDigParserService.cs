@@ -7,8 +7,9 @@ using System.Text;
 using YamlDotNet.Serialization;
 using System.Text.RegularExpressions;
 using Markdig;
+using Markdig.Extensions.Tables;
 #if DEBUG
-using Kuchulem.MarkdownBlog.Libs.Extensions;
+using Kuchulem.DotNet.ConsoleHelpers.Extensions;
 #endif
 
 namespace Kuchulem.MarkdownBlog.Services.MdFileParserServices
@@ -95,7 +96,7 @@ namespace Kuchulem.MarkdownBlog.Services.MdFileParserServices
 
             var fileData = desrializer.Deserialize<TFileData>(yaml);
 
-            foreach(var prop in typeof(TFileData).GetProperties())
+            foreach (var prop in typeof(TFileData).GetProperties())
             {
                 var fileProp = fileModel.GetType().GetProperty(prop.Name);
 
@@ -103,16 +104,21 @@ namespace Kuchulem.MarkdownBlog.Services.MdFileParserServices
                 {
 #if DEBUG
                     this.WriteDebugLine(message: string.Format(
-                        "Missing property {0} from data <{1}> in model <{2}>", 
-                        prop.Name, 
-                        typeof(TFileData).Name, 
+                        "Missing property {0} from data <{1}> in model <{2}>",
+                        prop.Name,
+                        typeof(TFileData).Name,
                         fileModel.GetType().Name
                     ));
 #endif
                     continue;
                 }
 
-                fileProp.SetValue(fileModel, prop.GetValue(fileData));
+                var value = prop.GetValue(fileData);
+
+                if (value is string stringValue)
+                    value = stringValue.Trim();
+
+                fileProp.SetValue(fileModel, value);
             }
         }
 
@@ -125,10 +131,10 @@ namespace Kuchulem.MarkdownBlog.Services.MdFileParserServices
             string line;
             while (!(line = reader.ReadLine()).EndsWith("]]"))
             {
-                summary += line + Environment.NewLine;
+                summary += line.Trim() + Environment.NewLine;
             }
 
-            fileModel.Summary = summary;
+            fileModel.Summary = summary.Trim();
         }
     }
 }

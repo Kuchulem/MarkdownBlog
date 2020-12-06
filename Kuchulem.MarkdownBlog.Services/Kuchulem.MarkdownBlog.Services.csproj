@@ -5,13 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Markdig.Signed" Version="0.20.0" />
+    <PackageReference Include="Kuchulem.DotNet.ConsoleHelpers" Version="1.0.0" />
+    <PackageReference Include="Markdig.Signed" Version="0.22.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor" Version="2.2.0" />
-    <PackageReference Include="YamlDotNet" Version="8.1.2" />
+    <PackageReference Include="YamlDotNet" Version="9.1.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Kuchulem.MarkdownBlog.Libs\Kuchulem.MarkdownBlog.Libs.csproj" />
     <ProjectReference Include="..\Kuchulem.MarkdownBlog.Models\Kuchulem.MarkdownBlog.Models.csproj" />
   </ItemGroup>
 

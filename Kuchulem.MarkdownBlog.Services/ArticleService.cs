@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Kuchulem.MarkdownBlog.Services.MdFileParserServices;
 #if DEBUG
-using Kuchulem.MarkdownBlog.Libs.Extensions;
+using Kuchulem.DotNet.ConsoleHelpers.Extensions;
 #endif
 
 namespace Kuchulem.MarkdownBlog.Services

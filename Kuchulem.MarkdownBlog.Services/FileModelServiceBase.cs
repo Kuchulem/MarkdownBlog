@@ -7,7 +7,7 @@ using Kuchulem.MarkdownBlog.Services.Configurations;
 using Kuchulem.MarkdownBlog.Models;
 using Kuchulem.MarkdownBlog.Services.MdFileParserServices;
 #if DEBUG
-using Kuchulem.MarkdownBlog.Libs.Extensions;
+using Kuchulem.DotNet.ConsoleHelpers.Extensions;
 #endif
 
 namespace Kuchulem.MarkdownBlog.Services

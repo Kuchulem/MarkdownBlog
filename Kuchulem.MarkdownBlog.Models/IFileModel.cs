@@ -41,6 +41,11 @@ namespace Kuchulem.MarkdownBlog.Models
         string Summary { get; set; }
 
         /// <summary>
+        /// Author of the file
+        /// </summary>
+        string Author { get; set; }
+
+        /// <summary>
         /// The html content of the file
         /// </summary>
         string HtmlContent { get; set; }

@@ -17,6 +17,16 @@ namespace Kuchulem.MarkdownBlog.Core.Models
         public abstract string Title { get; }
 
         /// <summary>
+        /// Author of the page
+        /// </summary>
+        public string Author { get; set; }
+
+        /// <summary>
+        /// Author of the page
+        /// </summary>
+        public string Summary { get; set; }
+
+        /// <summary>
         /// Page number in the pagination
         /// </summary>
         public int Page { get; set; }

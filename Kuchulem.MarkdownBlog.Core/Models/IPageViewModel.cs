@@ -8,5 +8,7 @@ namespace Kuchulem.MarkdownBlog.Core.Models
     public interface IPageViewModel
     {
         string Title { get; }
+        string Summary { get; }
+        string Author { get; }
     }
 }

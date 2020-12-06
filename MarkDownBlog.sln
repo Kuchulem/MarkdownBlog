@@ -9,11 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kuchulem.MarkdownBlog.Servi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kuchulem.MarkdownBlog.Models", "Kuchulem.MarkdownBlog.Models\Kuchulem.MarkdownBlog.Models.csproj", "{20478C28-326A-42ED-8ADF-793C2E3B7493}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kuchulem.MarkdownBlog.Libs", "Kuchulem.MarkdownBlog.Libs\Kuchulem.MarkdownBlog.Libs.csproj", "{91603015-69C9-441E-9DD5-FD6C13545864}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kuchulem.MarkdownBlog.Command", "Kuchulem.MarkdownBlog.Command\Kuchulem.MarkdownBlog.Command.csproj", "{1AF145A6-F572-4B0A-B06E-6AFD70B0BB69}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kuchulem.ConsoleDrawer", "..\..\Kuchulem.ConsoleDrawer\Kuchulem.ConsoleDrawer\Kuchulem.ConsoleDrawer.csproj", "{1156C49C-387D-44B3-8CE1-59B98A9619C6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kuchulem.MarkdownBlog.Command", "Kuchulem.MarkdownBlog.Command\Kuchulem.MarkdownBlog.Command.csproj", "{1AF145A6-F572-4B0A-B06E-6AFD70B0BB69}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,18 +29,10 @@ Global
 		{20478C28-326A-42ED-8ADF-793C2E3B7493}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{20478C28-326A-42ED-8ADF-793C2E3B7493}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{20478C28-326A-42ED-8ADF-793C2E3B7493}.Release|Any CPU.Build.0 = Release|Any CPU
-		{91603015-69C9-441E-9DD5-FD6C13545864}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{91603015-69C9-441E-9DD5-FD6C13545864}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{91603015-69C9-441E-9DD5-FD6C13545864}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{91603015-69C9-441E-9DD5-FD6C13545864}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1AF145A6-F572-4B0A-B06E-6AFD70B0BB69}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1AF145A6-F572-4B0A-B06E-6AFD70B0BB69}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1AF145A6-F572-4B0A-B06E-6AFD70B0BB69}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1AF145A6-F572-4B0A-B06E-6AFD70B0BB69}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1156C49C-387D-44B3-8CE1-59B98A9619C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1156C49C-387D-44B3-8CE1-59B98A9619C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1156C49C-387D-44B3-8CE1-59B98A9619C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1156C49C-387D-44B3-8CE1-59B98A9619C6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

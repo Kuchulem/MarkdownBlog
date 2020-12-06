@@ -30,8 +30,8 @@ namespace Kuchulem.MarkdownBlog.Models
         public bool Menu { get; set; }
 
         /// <summary>
-        /// Description of the page
+        /// Author of the page
         /// </summary>
-        public string Description { get; set; }
+        public string Author { get; set; }
     }
 }

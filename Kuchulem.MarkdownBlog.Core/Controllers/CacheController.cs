@@ -1,11 +1,11 @@
 ﻿using Kuchulem.MarkdownBlog.Services;
-using Kuchulem.MarkdownBlog.Libs.Extensions;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
+#if DEBUG
+using Kuchulem.DotNet.ConsoleHelpers.Extensions;
+#endif
 
 namespace Kuchulem.MarkdownBlog.Core.Controllers
 {
@@ -50,7 +50,7 @@ namespace Kuchulem.MarkdownBlog.Core.Controllers
             if (!scopes.Any())
                 return BadRequest(scope);
 
-            foreach(var foundScope in scopes)
+            foreach (var foundScope in scopes)
                 switch (foundScope)
                 {
                     case "Articles":
